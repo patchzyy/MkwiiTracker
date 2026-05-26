@@ -91,13 +91,25 @@ async function getWiimmfiWithMkwAna() {
     await writeFile(toolPath, Buffer.from(await response.arrayBuffer()), { mode: 0o755 });
   }
 
-  const { stdout } = await execFileAsync(toolPath, ["query", "--brief", "--quiet", "--limit", "-1"], {
-    timeout: 30000,
-    maxBuffer: 1024 * 1024,
-  });
+  let stdout = "";
+  let stderr = "";
+  try {
+    const result = await execFileAsync(toolPath, ["query", "--brief", "@-1"], {
+      timeout: 30000,
+      maxBuffer: 1024 * 1024,
+    });
+    stdout = result.stdout;
+    stderr = result.stderr;
+  } catch (error) {
+    stdout = error.stdout || "";
+    stderr = error.stderr || "";
+    if (!stdout.trim()) {
+      throw new Error(`mkw-ana failed: ${stderr.trim() || error.message}`);
+    }
+  }
   const match = stdout.match(/(\d+)\s*\*/)?.[1] || stdout.match(/\b(\d+)\b/)?.[1];
   const count = Number(match);
-  if (!Number.isFinite(count)) throw new Error(`could not parse mkw-ana output: ${stdout.trim()}`);
+  if (!Number.isFinite(count)) throw new Error(`could not parse mkw-ana output: ${(stdout || stderr).trim()}`);
 
   return {
     count,
