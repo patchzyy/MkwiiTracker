@@ -44,22 +44,27 @@ function latestForSeries(key) {
   return [...snapshots].reverse().find((point) => parseNumber(point?.counts?.[key]) !== null) || null;
 }
 
+function allTimeHigh(key) {
+  return snapshots.reduce((max, point) => {
+    const value = parseNumber(point?.counts?.[key]);
+    return value === null ? max : Math.max(max, value);
+  }, 0);
+}
+
+function renderStartedFrom() {
+  const first = snapshots.find((point) => Number.isFinite(new Date(point.timestamp).getTime()));
+  document.getElementById("started-from").textContent = first
+    ? new Date(first.timestamp).toLocaleDateString([], { year: "numeric", month: "short", day: "numeric" })
+    : "--";
+}
+
 function renderCards() {
   series.forEach(({ key }) => {
     const latest = latestForSeries(key);
     const count = parseNumber(latest?.counts?.[key]);
-    const state = latest?.sources?.[key]?.status || (count === null ? "no data" : "ok");
     document.getElementById(`${key}-count`).textContent = formatCount(count);
-    document.getElementById(`${key}-state`).textContent = state === "ok" ? "latest valid point" : state;
+    document.getElementById(`${key}-ath`).textContent = formatCount(allTimeHigh(key));
   });
-
-  const latestTime = latest ? new Date(latest.timestamp) : null;
-  const counts = series.map(({ key }) => parseNumber(latest?.counts?.[key])).filter((count) => count !== null);
-  const total = counts.reduce((sum, count) => sum + count, 0);
-
-  document.getElementById("latest-time").textContent = latestTime ? latestTime.toLocaleString([], { dateStyle: "medium", timeStyle: "short" }) : "--";
-  document.getElementById("latest-total").textContent = counts.length ? formatCount(total) : "--";
-  document.getElementById("latest-points").textContent = formatCount(snapshots.length);
 }
 
 function renderChart(points) {
@@ -75,11 +80,11 @@ function renderChart(points) {
   const height = rect.height;
   context.clearRect(0, 0, width, height);
 
-  const pad = { top: 20, right: 22, bottom: 44, left: 54 };
+  const pad = { top: 20, right: 58, bottom: 44, left: 54 };
   const plotWidth = width - pad.left - pad.right;
   const plotHeight = height - pad.top - pad.bottom;
 
-  context.fillStyle = "#101820";
+  context.fillStyle = "#000000";
   context.fillRect(0, 0, width, height);
 
   if (points.length < 2) {
@@ -103,6 +108,7 @@ function renderChart(points) {
   context.lineWidth = 1;
   context.fillStyle = "#9fb1bc";
   context.font = "12px system-ui, sans-serif";
+  context.textAlign = "left";
 
   for (let step = 0; step <= 4; step += 1) {
     const value = Math.round((yMax / 4) * step);
@@ -121,28 +127,33 @@ function renderChart(points) {
     const label = currentRange === "all"
       ? time.toLocaleDateString([], { month: "short", day: "numeric" })
       : time.toLocaleTimeString([], { hour: "2-digit", minute: "2-digit" });
-    context.fillText(label, x(time.getTime()) - 22, height - 17);
+    const xPos = x(time.getTime());
+    context.textAlign = index === 0 ? "left" : index === tickCount - 1 ? "right" : "center";
+    context.fillText(label, xPos, height - 17);
   }
+  context.textAlign = "left";
 
   series.forEach(({ key, color }) => {
     const linePoints = points
       .map((point) => ({ time: new Date(point.timestamp).getTime(), value: parseNumber(point.counts?.[key]) }))
       .filter((point) => point.value !== null);
 
-    if (linePoints.length < 2) return;
+    if (linePoints.length === 0) return;
 
-    context.strokeStyle = color;
-    context.lineWidth = 3;
-    context.lineJoin = "round";
-    context.lineCap = "round";
-    context.beginPath();
-    linePoints.forEach((point, index) => {
-      const xPos = x(point.time);
-      const yPos = y(point.value);
-      if (index === 0) context.moveTo(xPos, yPos);
-      else context.lineTo(xPos, yPos);
-    });
-    context.stroke();
+    if (linePoints.length > 1) {
+      context.strokeStyle = color;
+      context.lineWidth = 3;
+      context.lineJoin = "round";
+      context.lineCap = "round";
+      context.beginPath();
+      linePoints.forEach((point, index) => {
+        const xPos = x(point.time);
+        const yPos = y(point.value);
+        if (index === 0) context.moveTo(xPos, yPos);
+        else context.lineTo(xPos, yPos);
+      });
+      context.stroke();
+    }
 
     context.fillStyle = color;
     linePoints.slice(-1).forEach((point) => {
@@ -154,10 +165,10 @@ function renderChart(points) {
 }
 
 function render() {
-  const latest = latestUsableSnapshot();
   const points = filteredSnapshots();
   const rangeLabel = currentRange === "all" ? "all collected snapshots" : `the last ${currentRange} hours`;
   document.getElementById("chart-caption").textContent = `${points.length} points shown across ${rangeLabel}.`;
+  renderStartedFrom();
   renderCards();
   renderChart(points);
 }

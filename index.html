@@ -3,33 +3,32 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="theme-color" content="#101820">
-    <title>MKWii Distribution Pulse</title>
+    <meta name="theme-color" content="#000000">
+    <title>mkwii tracker</title>
     <link rel="stylesheet" href="styles.css">
   </head>
   <body>
     <main class="shell">
       <section class="hero">
-        <div>
-          <p class="eyebrow">Mario Kart Wii online tracker</p>
-          <h1>MKWii Distribution Pulse</h1>
-          <p class="lede">A small live-ish popularity timeline for Wiimmfi, Retro WFC, and NewWFC concurrent players.</p>
+        <div class="title-block">
+          <h1>mkwii tracker</h1>
+          <p class="tracking-start">Started tracking from: <span id="started-from">--</span></p>
         </div>
         <div class="hero-stats" aria-label="Current player counts">
           <article class="stat-card wiimmfi">
             <span>Wiimmfi</span>
             <strong id="wiimmfi-count">--</strong>
-            <small id="wiimmfi-state">waiting for data</small>
+            <small>all time high: <b id="wiimmfi-ath">--</b></small>
           </article>
           <article class="stat-card rwfc">
             <span>RWFC</span>
             <strong id="rwfc-count">--</strong>
-            <small id="rwfc-state">waiting for data</small>
+            <small>all time high: <b id="rwfc-ath">--</b></small>
           </article>
           <article class="stat-card newwfc">
             <span>newWFC</span>
             <strong id="newwfc-count">--</strong>
-            <small id="newwfc-state">waiting for data</small>
+            <small>all time high: <b id="newwfc-ath">--</b></small>
           </article>
         </div>
       </section>
@@ -56,27 +55,7 @@
           <span><i class="newwfc-key"></i>newWFC</span>
         </div>
       </section>
-
-      <section class="grid">
-        <article class="panel">
-          <h2>Latest Snapshot</h2>
-          <dl class="snapshot-list">
-            <div><dt>Collected</dt><dd id="latest-time">--</dd></div>
-            <div><dt>Total tracked</dt><dd id="latest-total">--</dd></div>
-            <div><dt>Data points</dt><dd id="latest-points">--</dd></div>
-          </dl>
-        </article>
-        <article class="panel">
-          <h2>Data Notes</h2>
-          <p class="body-copy">RWFC and newWFC are collected from their public JSON endpoints. Wiimmfi is counted from the public MKWii text stats rows when that endpoint is reachable; blocked snapshots are left blank rather than substituted with a smaller matchmaking-only count.</p>
-          <p class="source-links">
-            <a href="https://status.rwfc.net/" rel="noreferrer">RWFC status</a>
-            <a href="https://newwfc.xyz/api/stats" rel="noreferrer">newWFC stats</a>
-            <a href="https://wiimmfi.de/game" rel="noreferrer">Wiimmfi stats</a>
-          </p>
-        </article>
-      </section>
     </main>
-    <script src="app.js?v=2"></script>
+    <script src="app.js?v=3"></script>
   </body>
 </html>
