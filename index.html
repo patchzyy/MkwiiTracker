@@ -68,7 +68,7 @@
         </article>
         <article class="panel">
           <h2>Data Notes</h2>
-          <p class="body-copy">RWFC and newWFC are collected from their public JSON endpoints. Wiimmfi is collected with Wiimm's mkw-ana query tool against the Wiimmfi game server, with the public text stats endpoint kept as a fallback when it is reachable.</p>
+          <p class="body-copy">RWFC and newWFC are collected from their public JSON endpoints. Wiimmfi is counted from the public MKWii text stats rows when that endpoint is reachable; blocked snapshots are left blank rather than substituted with a smaller matchmaking-only count.</p>
           <p class="source-links">
             <a href="https://status.rwfc.net/" rel="noreferrer">RWFC status</a>
             <a href="https://newwfc.xyz/api/stats" rel="noreferrer">newWFC stats</a>
