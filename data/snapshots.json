@@ -43,6 +43,28 @@
           "detail": "3 groups"
         }
       }
+    },
+    {
+      "timestamp": "2026-05-26T19:52:21.063Z",
+      "counts": {
+        "wiimmfi": null,
+        "rwfc": 211,
+        "newwfc": 15
+      },
+      "sources": {
+        "wiimmfi": {
+          "status": "Command failed: /home/runner/work/MkwiiTracker/MkwiiTracker/.cache/mkw-ana/mkw-ana query --brief --quiet --limit -1\n/home/runner/work/MkwiiTracker/MkwiiTracker/.cache/mkw-ana/mkw-ana: error while loading shared libraries: libcrypto.so.1.1: cannot open shared object file: No such file or directory\n",
+          "detail": "collector could not read this source"
+        },
+        "rwfc": {
+          "status": "ok",
+          "detail": "26 rooms"
+        },
+        "newwfc": {
+          "status": "ok",
+          "detail": "4 groups"
+        }
+      }
     }
   ]
 }
