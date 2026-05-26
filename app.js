@@ -40,12 +40,17 @@ function latestUsableSnapshot() {
   return [...snapshots].reverse().find((point) => point && point.counts) || null;
 }
 
-function renderCards(latest) {
+function latestForSeries(key) {
+  return [...snapshots].reverse().find((point) => parseNumber(point?.counts?.[key]) !== null) || null;
+}
+
+function renderCards() {
   series.forEach(({ key }) => {
+    const latest = latestForSeries(key);
     const count = parseNumber(latest?.counts?.[key]);
     const state = latest?.sources?.[key]?.status || (count === null ? "no data" : "ok");
     document.getElementById(`${key}-count`).textContent = formatCount(count);
-    document.getElementById(`${key}-state`).textContent = state === "ok" ? "online now" : state;
+    document.getElementById(`${key}-state`).textContent = state === "ok" ? "latest valid point" : state;
   });
 
   const latestTime = latest ? new Date(latest.timestamp) : null;
@@ -153,7 +158,7 @@ function render() {
   const points = filteredSnapshots();
   const rangeLabel = currentRange === "all" ? "all collected snapshots" : `the last ${currentRange} hours`;
   document.getElementById("chart-caption").textContent = `${points.length} points shown across ${rangeLabel}.`;
-  renderCards(latest);
+  renderCards();
   renderChart(points);
 }
 

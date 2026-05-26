@@ -133,50 +133,6 @@
       }
     },
     {
-      "timestamp": "2026-05-26T19:58:11.334Z",
-      "counts": {
-        "wiimmfi": 50,
-        "rwfc": 221,
-        "newwfc": 13
-      },
-      "sources": {
-        "wiimmfi": {
-          "status": "ok",
-          "detail": "queried Wiimmfi game server with mkw-ana"
-        },
-        "rwfc": {
-          "status": "ok",
-          "detail": "27 rooms"
-        },
-        "newwfc": {
-          "status": "ok",
-          "detail": "4 groups"
-        }
-      }
-    },
-    {
-      "timestamp": "2026-05-26T19:59:19.999Z",
-      "counts": {
-        "wiimmfi": 49,
-        "rwfc": 220,
-        "newwfc": 13
-      },
-      "sources": {
-        "wiimmfi": {
-          "status": "ok",
-          "detail": "queried Wiimmfi game server with mkw-ana"
-        },
-        "rwfc": {
-          "status": "ok",
-          "detail": "28 rooms"
-        },
-        "newwfc": {
-          "status": "ok",
-          "detail": "4 groups"
-        }
-      }
-    },
-    {
       "timestamp": "2026-05-26T20:03:55.585Z",
       "counts": {
         "wiimmfi": 153,
