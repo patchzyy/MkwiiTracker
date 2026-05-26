@@ -25,6 +25,8 @@ jobs:
         with:
           node-version: 22
       - run: npm run collect
+        env:
+          WIIMMFI_STATS_URL: ${{ secrets.WIIMMFI_STATS_URL }}
       - name: Commit updated snapshots
         run: |
           git config user.name "github-actions[bot]"

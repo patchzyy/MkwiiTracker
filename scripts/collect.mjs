@@ -21,6 +21,35 @@ async function fetchText(url) {
   return response.text();
 }
 
+function parseWiimmfiPayload(text) {
+  try {
+    const json = JSON.parse(text);
+    const count = Number(json?.wiimmfi ?? json?.mariokartwii ?? json?.count ?? json?.online);
+    if (Number.isFinite(count)) {
+      return {
+        count,
+        detail: "read count from configured Wiimmfi source",
+      };
+    }
+  } catch {
+    // Not JSON; fall through to the official text table parser.
+  }
+
+  if (/Just a moment|Enable JavaScript and cookies|security verification/i.test(text)) {
+    throw new Error("blocked by Cloudflare challenge");
+  }
+
+  const rows = text.match(/\|RMC[A-Z0-9]\|/g) || [];
+  if (!text.includes("!id4!") || rows.length === 0) {
+    throw new Error("could not parse Wiimmfi text rows");
+  }
+
+  return {
+    count: rows.length,
+    detail: "counted rows from Wiimmfi text stats",
+  };
+}
+
 async function getRwfc() {
   const groups = await fetchJson("http://rwfc.net/api/groups");
   const online = groups.reduce((total, group) => {
@@ -48,22 +77,28 @@ async function getNewwfc() {
 }
 
 async function getWiimmfi() {
-  const text = await fetchText("https://wiimmfi.de/stats/game/mariokartwii/text");
+  const urls = [
+    process.env.WIIMMFI_STATS_URL,
+    "https://wiimmfi.de/stats/game/mariokartwii/text",
+  ].filter(Boolean);
 
-  if (/Just a moment|Enable JavaScript and cookies|security verification/i.test(text)) {
-    throw new Error("blocked by Cloudflare challenge");
+  const errors = [];
+  for (const url of urls) {
+    try {
+      const text = await fetchText(url);
+      const parsed = parseWiimmfiPayload(text);
+
+      return {
+        count: parsed.count,
+        status: "ok",
+        detail: parsed.detail,
+      };
+    } catch (error) {
+      errors.push(`${url}: ${error.message}`);
+    }
   }
 
-  const rows = text.match(/\|RMC[A-Z0-9]\|/g) || [];
-  if (!text.includes("!id4!") || rows.length === 0) {
-    throw new Error("could not parse Wiimmfi text rows");
-  }
-
-  return {
-    count: rows.length,
-    status: "ok",
-    detail: "counted rows from Wiimmfi text stats",
-  };
+  throw new Error(errors.join("; "));
 }
 
 async function safely(name, getter) {
