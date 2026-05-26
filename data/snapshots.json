@@ -109,6 +109,28 @@
           "detail": "4 groups"
         }
       }
+    },
+    {
+      "timestamp": "2026-05-26T19:56:16.799Z",
+      "counts": {
+        "wiimmfi": null,
+        "rwfc": 217,
+        "newwfc": 13
+      },
+      "sources": {
+        "wiimmfi": {
+          "status": "mkw-ana failed: Command failed: /home/runner/work/MkwiiTracker/MkwiiTracker/.cache/mkw-ana/mkw-ana --verbose query @-1\n",
+          "detail": "collector could not read this source"
+        },
+        "rwfc": {
+          "status": "ok",
+          "detail": "29 rooms"
+        },
+        "newwfc": {
+          "status": "ok",
+          "detail": "4 groups"
+        }
+      }
     }
   ]
 }
