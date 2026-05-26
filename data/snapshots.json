@@ -21,6 +21,28 @@
           "detail": "3 groups"
         }
       }
+    },
+    {
+      "timestamp": "2026-05-26T19:41:24.694Z",
+      "counts": {
+        "wiimmfi": null,
+        "rwfc": 192,
+        "newwfc": 10
+      },
+      "sources": {
+        "wiimmfi": {
+          "status": "HTTP 403",
+          "detail": "collector could not read this source"
+        },
+        "rwfc": {
+          "status": "ok",
+          "detail": "25 rooms"
+        },
+        "newwfc": {
+          "status": "ok",
+          "detail": "3 groups"
+        }
+      }
     }
   ]
 }
