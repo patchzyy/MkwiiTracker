@@ -1,8 +1,11 @@
 import { mkdir, readFile, writeFile } from "node:fs/promises";
+import { execFile } from "node:child_process";
 import path from "node:path";
+import { promisify } from "node:util";
 
 const root = process.cwd();
 const dataFile = path.join(root, "data", "snapshots.json");
+const execFileAsync = promisify(execFile);
 
 const headers = {
   "accept": "application/json,text/html;q=0.8,*/*;q=0.5",
@@ -48,19 +51,58 @@ async function getNewwfc() {
 }
 
 async function getWiimmfi() {
-  const html = await fetchText("https://wiimmfi.de/game");
-  if (/Just a moment|Enable JavaScript and cookies/i.test(html)) {
-    throw new Error("blocked by Cloudflare challenge");
+  let text;
+  try {
+    text = await fetchText("https://wiimmfi.de/stats/game/mariokartwii/text");
+  } catch (error) {
+    return getWiimmfiWithMkwAna();
   }
 
-  const compact = html.replace(/\s+/g, " ");
-  const row = compact.match(/Mario\s+Kart\s+Wii[\s\S]{0,500}?(\d+)\s+(?:players?|online)/i);
-  if (!row) throw new Error("could not parse Mario Kart Wii count");
+  if (/Just a moment|Enable JavaScript and cookies|security verification/i.test(text)) {
+    return getWiimmfiWithMkwAna();
+  }
+
+  const rows = text.match(/\|RMC[A-Z0-9]\|/g) || [];
+  if (!text.includes("!id4!") || rows.length === 0) {
+    throw new Error("could not parse Wiimmfi text rows");
+  }
 
   return {
-    count: Number(row[1]),
+    count: rows.length,
     status: "ok",
-    detail: "parsed from Wiimmfi game page",
+    detail: "counted rows from Wiimmfi text stats",
+  };
+}
+
+async function getWiimmfiWithMkwAna() {
+  if (process.platform !== "linux" || process.arch !== "x64") {
+    throw new Error("Wiimmfi web endpoint blocked and mkw-ana fallback requires Linux x64");
+  }
+
+  const toolDir = path.join(root, ".cache", "mkw-ana");
+  const toolPath = path.join(toolDir, "mkw-ana");
+  await mkdir(toolDir, { recursive: true });
+
+  try {
+    await readFile(toolPath);
+  } catch {
+    const response = await fetch("https://download.wiimm.de/mkw-ana/bin/mkw-ana-x86_64-r2938", { headers });
+    if (!response.ok) throw new Error(`mkw-ana download failed: HTTP ${response.status}`);
+    await writeFile(toolPath, Buffer.from(await response.arrayBuffer()), { mode: 0o755 });
+  }
+
+  const { stdout } = await execFileAsync(toolPath, ["query", "--brief", "--quiet", "--limit", "-1"], {
+    timeout: 30000,
+    maxBuffer: 1024 * 1024,
+  });
+  const match = stdout.match(/(\d+)\s*\*/)?.[1] || stdout.match(/\b(\d+)\b/)?.[1];
+  const count = Number(match);
+  if (!Number.isFinite(count)) throw new Error(`could not parse mkw-ana output: ${stdout.trim()}`);
+
+  return {
+    count,
+    status: "ok",
+    detail: "queried Wiimmfi game server with mkw-ana",
   };
 }
 
