@@ -86,7 +86,7 @@ async function getWiimmfiWithMkwAna() {
   try {
     await readFile(toolPath);
   } catch {
-    const response = await fetch("https://download.wiimm.de/mkw-ana/bin/mkw-ana-x86_64-r2938", { headers });
+    const response = await fetch("https://download.wiimm.de/mkw-ana/bin/mkw-ana-x86_64-r2910", { headers });
     if (!response.ok) throw new Error(`mkw-ana download failed: HTTP ${response.status}`);
     await writeFile(toolPath, Buffer.from(await response.arrayBuffer()), { mode: 0o755 });
   }
@@ -94,7 +94,7 @@ async function getWiimmfiWithMkwAna() {
   let stdout = "";
   let stderr = "";
   try {
-    const result = await execFileAsync(toolPath, ["--verbose", "query", "@-1"], {
+    const result = await execFileAsync(toolPath, ["query", "@-1"], {
       timeout: 30000,
       maxBuffer: 1024 * 1024,
     });
