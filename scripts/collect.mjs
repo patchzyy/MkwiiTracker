@@ -94,7 +94,7 @@ async function getWiimmfiWithMkwAna() {
   let stdout = "";
   let stderr = "";
   try {
-    const result = await execFileAsync(toolPath, ["query", "--brief", "@-1"], {
+    const result = await execFileAsync(toolPath, ["--verbose", "query", "@-1"], {
       timeout: 30000,
       maxBuffer: 1024 * 1024,
     });
