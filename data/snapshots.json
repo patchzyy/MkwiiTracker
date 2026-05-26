@@ -153,6 +153,28 @@
           "detail": "4 groups"
         }
       }
+    },
+    {
+      "timestamp": "2026-05-26T19:59:19.999Z",
+      "counts": {
+        "wiimmfi": 49,
+        "rwfc": 220,
+        "newwfc": 13
+      },
+      "sources": {
+        "wiimmfi": {
+          "status": "ok",
+          "detail": "queried Wiimmfi game server with mkw-ana"
+        },
+        "rwfc": {
+          "status": "ok",
+          "detail": "28 rooms"
+        },
+        "newwfc": {
+          "status": "ok",
+          "detail": "4 groups"
+        }
+      }
     }
   ]
 }
