@@ -167,7 +167,7 @@ h2 {
 .status-bars {
   display: grid;
   grid-template-columns: repeat(90, minmax(2px, 1fr));
-  gap: 3px;
+  gap: 2px;
   min-height: 36px;
 }
 
@@ -307,7 +307,7 @@ canvas {
   }
 
   .status-bars {
-    gap: 2px;
+    gap: 1px;
   }
 
   .status-meta {

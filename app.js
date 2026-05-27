@@ -51,57 +51,58 @@ function allTimeHigh(key) {
   }, 0);
 }
 
-function dayKey(date) {
+function hourKey(date) {
   return [
     date.getFullYear(),
     String(date.getMonth() + 1).padStart(2, "0"),
     String(date.getDate()).padStart(2, "0"),
+    String(date.getHours()).padStart(2, "0"),
   ].join("-");
 }
 
-function statusDays(key) {
-  const today = new Date();
-  today.setHours(0, 0, 0, 0);
+function statusHours(key) {
+  const currentHour = new Date();
+  currentHour.setMinutes(0, 0, 0);
 
-  const days = Array.from({ length: 90 }, (_, index) => {
-    const date = new Date(today);
-    date.setDate(today.getDate() - (89 - index));
+  const hours = Array.from({ length: 90 }, (_, index) => {
+    const date = new Date(currentHour);
+    date.setHours(currentHour.getHours() - (89 - index));
     return {
       date,
-      key: dayKey(date),
+      key: hourKey(date),
       total: 0,
       valid: 0,
     };
   });
 
-  const dayMap = new Map(days.map((day) => [day.key, day]));
+  const hourMap = new Map(hours.map((hour) => [hour.key, hour]));
   snapshots.forEach((point) => {
     const time = new Date(point.timestamp);
     if (!Number.isFinite(time.getTime())) return;
 
-    const day = dayMap.get(dayKey(time));
-    if (!day) return;
+    const hour = hourMap.get(hourKey(time));
+    if (!hour) return;
 
-    day.total += 1;
+    hour.total += 1;
     if (parseNumber(point?.counts?.[key]) !== null) {
-      day.valid += 1;
+      hour.valid += 1;
     }
   });
 
-  return days;
+  return hours;
 }
 
-function statusClass(day) {
-  if (day.total === 0) return "empty";
-  const rate = day.valid / day.total;
+function statusClass(hour) {
+  if (hour.total === 0) return "empty";
+  const rate = hour.valid / hour.total;
   if (rate >= 0.99) return "good";
   if (rate > 0) return "partial";
   return "bad";
 }
 
-function statusLabel(day) {
-  if (day.total === 0) return "No data collected";
-  const rate = (day.valid / day.total) * 100;
+function statusLabel(hour) {
+  if (hour.total === 0) return "No data collected";
+  const rate = (hour.valid / hour.total) * 100;
   return `${rate.toFixed(0)}% successful updates`;
 }
 
@@ -110,10 +111,10 @@ function renderStatusTracker() {
   list.replaceChildren();
 
   series.forEach(({ key, label }) => {
-    const days = statusDays(key);
-    const activeDays = days.filter((day) => day.total > 0);
-    const total = activeDays.reduce((sum, day) => sum + day.total, 0);
-    const valid = activeDays.reduce((sum, day) => sum + day.valid, 0);
+    const hours = statusHours(key);
+    const activeHours = hours.filter((hour) => hour.total > 0);
+    const total = activeHours.reduce((sum, hour) => sum + hour.total, 0);
+    const valid = activeHours.reduce((sum, hour) => sum + hour.valid, 0);
     const uptime = total > 0 ? (valid / total) * 100 : null;
     const latest = latestForSeries(key);
     const latestAge = latest ? Date.now() - new Date(latest.timestamp).getTime() : Infinity;
@@ -138,17 +139,17 @@ function renderStatusTracker() {
 
     const bars = document.createElement("div");
     bars.className = "status-bars";
-    days.forEach((day) => {
+    hours.forEach((hour) => {
       const bar = document.createElement("span");
-      bar.className = `status-bar ${statusClass(day)}`;
-      bar.title = `${day.date.toLocaleDateString([], { month: "short", day: "numeric" })}: ${statusLabel(day)}`;
+      bar.className = `status-bar ${statusClass(hour)}`;
+      bar.title = `${hour.date.toLocaleString([], { month: "short", day: "numeric", hour: "2-digit" })}: ${statusLabel(hour)}`;
       bars.append(bar);
     });
 
     const meta = document.createElement("div");
     meta.className = "status-meta";
     meta.innerHTML = `
-      <span>90 days ago</span>
+      <span>90 hours ago</span>
       <i class="status-rule"></i>
       <span>${uptime === null ? "--" : `${uptime.toFixed(2)}%`} updates</span>
       <i class="status-rule"></i>
