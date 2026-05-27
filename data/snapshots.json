@@ -439,6 +439,28 @@
           "detail": "3 groups"
         }
       }
+    },
+    {
+      "timestamp": "2026-05-27T07:38:09.678Z",
+      "counts": {
+        "wiimmfi": null,
+        "rwfc": null,
+        "newwfc": 2
+      },
+      "sources": {
+        "wiimmfi": {
+          "status": "https://wiimmfi.de/stats/game/mariokartwii/text: HTTP 403",
+          "detail": "collector could not read this source"
+        },
+        "rwfc": {
+          "status": "fetch failed",
+          "detail": "collector could not read this source"
+        },
+        "newwfc": {
+          "status": "ok",
+          "detail": "1 groups"
+        }
+      }
     }
   ]
 }
