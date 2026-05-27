@@ -51,6 +51,119 @@ function allTimeHigh(key) {
   }, 0);
 }
 
+function dayKey(date) {
+  return [
+    date.getFullYear(),
+    String(date.getMonth() + 1).padStart(2, "0"),
+    String(date.getDate()).padStart(2, "0"),
+  ].join("-");
+}
+
+function statusDays(key) {
+  const today = new Date();
+  today.setHours(0, 0, 0, 0);
+
+  const days = Array.from({ length: 90 }, (_, index) => {
+    const date = new Date(today);
+    date.setDate(today.getDate() - (89 - index));
+    return {
+      date,
+      key: dayKey(date),
+      total: 0,
+      valid: 0,
+    };
+  });
+
+  const dayMap = new Map(days.map((day) => [day.key, day]));
+  snapshots.forEach((point) => {
+    const time = new Date(point.timestamp);
+    if (!Number.isFinite(time.getTime())) return;
+
+    const day = dayMap.get(dayKey(time));
+    if (!day) return;
+
+    day.total += 1;
+    if (parseNumber(point?.counts?.[key]) !== null) {
+      day.valid += 1;
+    }
+  });
+
+  return days;
+}
+
+function statusClass(day) {
+  if (day.total === 0) return "empty";
+  const rate = day.valid / day.total;
+  if (rate >= 0.99) return "good";
+  if (rate > 0) return "partial";
+  return "bad";
+}
+
+function statusLabel(day) {
+  if (day.total === 0) return "No data collected";
+  const rate = (day.valid / day.total) * 100;
+  return `${rate.toFixed(0)}% successful updates`;
+}
+
+function renderStatusTracker() {
+  const list = document.getElementById("status-list");
+  list.replaceChildren();
+
+  series.forEach(({ key, label }) => {
+    const days = statusDays(key);
+    const activeDays = days.filter((day) => day.total > 0);
+    const total = activeDays.reduce((sum, day) => sum + day.total, 0);
+    const valid = activeDays.reduce((sum, day) => sum + day.valid, 0);
+    const uptime = total > 0 ? (valid / total) * 100 : null;
+    const latest = latestForSeries(key);
+    const latestAge = latest ? Date.now() - new Date(latest.timestamp).getTime() : Infinity;
+    const isCurrent = latestAge < 2 * 60 * 60 * 1000;
+
+    const item = document.createElement("article");
+    item.className = "status-service";
+
+    const header = document.createElement("div");
+    header.className = "status-row";
+
+    const name = document.createElement("span");
+    name.className = "status-name";
+    name.textContent = label;
+
+    const icon = document.createElement("span");
+    icon.className = "status-ok";
+    icon.textContent = isCurrent ? "✓" : "!";
+    icon.style.background = isCurrent ? "#28b463" : "#e8b84b";
+
+    header.append(name, icon);
+
+    const bars = document.createElement("div");
+    bars.className = "status-bars";
+    days.forEach((day) => {
+      const bar = document.createElement("span");
+      bar.className = `status-bar ${statusClass(day)}`;
+      bar.title = `${day.date.toLocaleDateString([], { month: "short", day: "numeric" })}: ${statusLabel(day)}`;
+      bars.append(bar);
+    });
+
+    const meta = document.createElement("div");
+    meta.className = "status-meta";
+    meta.innerHTML = `
+      <span>90 days ago</span>
+      <i class="status-rule"></i>
+      <span>${uptime === null ? "--" : `${uptime.toFixed(2)}%`} updates</span>
+      <i class="status-rule"></i>
+      <span>Today</span>
+    `;
+
+    const state = document.createElement("div");
+    state.className = "status-state";
+    state.textContent = isCurrent ? "Normal" : "No recent successful update";
+
+    item.append(header, bars, meta, state);
+    list.append(item);
+  });
+}
+
 function renderStartedFrom() {
   const first = snapshots.find((point) => Number.isFinite(new Date(point.timestamp).getTime()));
   document.getElementById("started-from").textContent = first
@@ -170,6 +283,7 @@ function render() {
   document.getElementById("chart-caption").textContent = `${points.length} points shown across ${rangeLabel}.`;
   renderStartedFrom();
   renderCards();
+  renderStatusTracker();
   renderChart(points);
 }
 

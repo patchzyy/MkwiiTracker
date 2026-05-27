@@ -113,6 +113,11 @@ h2 {
   overflow: hidden;
 }
 
+.status-panel {
+  margin-bottom: 14px;
+  overflow: hidden;
+}
+
 .panel-head {
   display: flex;
   gap: 14px;
@@ -120,6 +125,90 @@ h2 {
   justify-content: space-between;
   padding: 12px;
   border-bottom: 1px solid var(--line);
+}
+
+.status-list {
+  display: grid;
+}
+
+.status-service {
+  padding: 14px 20px 18px;
+}
+
+.status-service + .status-service {
+  border-top: 1px solid var(--line);
+}
+
+.status-row {
+  display: flex;
+  gap: 16px;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 10px;
+}
+
+.status-name {
+  font-size: 0.9rem;
+  font-weight: 750;
+}
+
+.status-ok {
+  display: inline-grid;
+  width: 22px;
+  height: 22px;
+  place-items: center;
+  border-radius: 50%;
+  background: #28b463;
+  color: #000;
+  font-size: 0.78rem;
+  font-weight: 900;
+}
+
+.status-bars {
+  display: grid;
+  grid-template-columns: repeat(90, minmax(2px, 1fr));
+  gap: 3px;
+  min-height: 36px;
+}
+
+.status-bar {
+  height: 34px;
+  border-radius: 2px;
+  background: #262626;
+}
+
+.status-bar.good {
+  background: #75d887;
+}
+
+.status-bar.partial {
+  background: #e8b84b;
+}
+
+.status-bar.bad {
+  background: #e34f5f;
+}
+
+.status-meta {
+  display: grid;
+  grid-template-columns: auto 1fr auto 1fr auto;
+  gap: 14px;
+  align-items: center;
+  margin-top: 10px;
+  color: #9aa4b2;
+  font-size: 0.78rem;
+}
+
+.status-rule {
+  height: 1px;
+  background: #45505f;
+  opacity: 0.8;
+}
+
+.status-state {
+  margin-top: 8px;
+  color: #9aa4b2;
+  font-size: 0.78rem;
 }
 
 .controls {
@@ -211,5 +300,22 @@ canvas {
 
   .controls {
     justify-content: flex-start;
+  }
+
+  .status-service {
+    padding: 12px;
+  }
+
+  .status-bars {
+    gap: 2px;
+  }
+
+  .status-meta {
+    grid-template-columns: auto 1fr auto;
+  }
+
+  .status-meta .status-rule:last-of-type,
+  .status-meta span:last-child {
+    display: none;
   }
 }
