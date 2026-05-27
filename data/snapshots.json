@@ -373,6 +373,28 @@
           "detail": "1 groups"
         }
       }
+    },
+    {
+      "timestamp": "2026-05-27T02:25:48.132Z",
+      "counts": {
+        "wiimmfi": null,
+        "rwfc": 190,
+        "newwfc": 12
+      },
+      "sources": {
+        "wiimmfi": {
+          "status": "https://wiimmfi.de/stats/game/mariokartwii/text: HTTP 403",
+          "detail": "collector could not read this source"
+        },
+        "rwfc": {
+          "status": "ok",
+          "detail": "22 rooms"
+        },
+        "newwfc": {
+          "status": "ok",
+          "detail": "2 groups"
+        }
+      }
     }
   ]
 }
