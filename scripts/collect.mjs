@@ -24,6 +24,17 @@ async function fetchText(url) {
 function parseWiimmfiPayload(text) {
   try {
     const json = JSON.parse(text);
+    if (Array.isArray(json)) {
+      const rooms = json.filter((item) => item?.type === "room" && item?.is_mkw);
+      const count = rooms.reduce((sum, room) => sum + Number(room.n_players || 0), 0);
+      if (rooms.length > 0 && Number.isFinite(count)) {
+        return {
+          count,
+          detail: `${rooms.length} rooms from Wiimmfi JSON stats`,
+        };
+      }
+    }
+
     const count = Number(json?.wiimmfi ?? json?.mariokartwii ?? json?.count ?? json?.online);
     if (Number.isFinite(count)) {
       return {
@@ -79,6 +90,7 @@ async function getNewwfc() {
 async function getWiimmfi() {
   const urls = [
     process.env.WIIMMFI_STATS_URL,
+    "https://wiimmfi.de/stats/mkwx?m=json",
     "https://wiimmfi.de/stats/game/mariokartwii/text",
   ].filter(Boolean);
 
