@@ -3035,6 +3035,28 @@
           "detail": "2 groups"
         }
       }
+    },
+    {
+      "timestamp": "2026-06-01T23:57:08.112Z",
+      "counts": {
+        "wiimmfi": 85,
+        "rwfc": 152,
+        "newwfc": 9
+      },
+      "sources": {
+        "wiimmfi": {
+          "status": "ok",
+          "detail": "13 rooms from Wiimmfi JSON stats"
+        },
+        "rwfc": {
+          "status": "ok",
+          "detail": "23 rooms"
+        },
+        "newwfc": {
+          "status": "ok",
+          "detail": "2 groups"
+        }
+      }
     }
   ]
 }
