@@ -1,248 +1,6 @@
 {
   "snapshots": [
     {
-      "timestamp": "2026-05-26T19:39:41.289Z",
-      "counts": {
-        "wiimmfi": null,
-        "rwfc": 200,
-        "newwfc": 10
-      },
-      "sources": {
-        "wiimmfi": {
-          "status": "HTTP 403",
-          "detail": "collector could not read this source"
-        },
-        "rwfc": {
-          "status": "ok",
-          "detail": "26 rooms"
-        },
-        "newwfc": {
-          "status": "ok",
-          "detail": "3 groups"
-        }
-      }
-    },
-    {
-      "timestamp": "2026-05-26T19:41:24.694Z",
-      "counts": {
-        "wiimmfi": null,
-        "rwfc": 192,
-        "newwfc": 10
-      },
-      "sources": {
-        "wiimmfi": {
-          "status": "HTTP 403",
-          "detail": "collector could not read this source"
-        },
-        "rwfc": {
-          "status": "ok",
-          "detail": "25 rooms"
-        },
-        "newwfc": {
-          "status": "ok",
-          "detail": "3 groups"
-        }
-      }
-    },
-    {
-      "timestamp": "2026-05-26T19:52:21.063Z",
-      "counts": {
-        "wiimmfi": null,
-        "rwfc": 211,
-        "newwfc": 15
-      },
-      "sources": {
-        "wiimmfi": {
-          "status": "Command failed: /home/runner/work/MkwiiTracker/MkwiiTracker/.cache/mkw-ana/mkw-ana query --brief --quiet --limit -1\n/home/runner/work/MkwiiTracker/MkwiiTracker/.cache/mkw-ana/mkw-ana: error while loading shared libraries: libcrypto.so.1.1: cannot open shared object file: No such file or directory\n",
-          "detail": "collector could not read this source"
-        },
-        "rwfc": {
-          "status": "ok",
-          "detail": "26 rooms"
-        },
-        "newwfc": {
-          "status": "ok",
-          "detail": "4 groups"
-        }
-      }
-    },
-    {
-      "timestamp": "2026-05-26T19:53:50.075Z",
-      "counts": {
-        "wiimmfi": null,
-        "rwfc": 212,
-        "newwfc": 16
-      },
-      "sources": {
-        "wiimmfi": {
-          "status": "Command failed: /home/runner/work/MkwiiTracker/MkwiiTracker/.cache/mkw-ana/mkw-ana query --brief --quiet --limit -1\n",
-          "detail": "collector could not read this source"
-        },
-        "rwfc": {
-          "status": "ok",
-          "detail": "27 rooms"
-        },
-        "newwfc": {
-          "status": "ok",
-          "detail": "4 groups"
-        }
-      }
-    },
-    {
-      "timestamp": "2026-05-26T19:55:11.194Z",
-      "counts": {
-        "wiimmfi": null,
-        "rwfc": 214,
-        "newwfc": 15
-      },
-      "sources": {
-        "wiimmfi": {
-          "status": "mkw-ana failed: Command failed: /home/runner/work/MkwiiTracker/MkwiiTracker/.cache/mkw-ana/mkw-ana query --brief @-1\n",
-          "detail": "collector could not read this source"
-        },
-        "rwfc": {
-          "status": "ok",
-          "detail": "29 rooms"
-        },
-        "newwfc": {
-          "status": "ok",
-          "detail": "4 groups"
-        }
-      }
-    },
-    {
-      "timestamp": "2026-05-26T19:56:16.799Z",
-      "counts": {
-        "wiimmfi": null,
-        "rwfc": 217,
-        "newwfc": 13
-      },
-      "sources": {
-        "wiimmfi": {
-          "status": "mkw-ana failed: Command failed: /home/runner/work/MkwiiTracker/MkwiiTracker/.cache/mkw-ana/mkw-ana --verbose query @-1\n",
-          "detail": "collector could not read this source"
-        },
-        "rwfc": {
-          "status": "ok",
-          "detail": "29 rooms"
-        },
-        "newwfc": {
-          "status": "ok",
-          "detail": "4 groups"
-        }
-      }
-    },
-    {
-      "timestamp": "2026-05-26T20:03:55.585Z",
-      "counts": {
-        "wiimmfi": 153,
-        "rwfc": 224,
-        "newwfc": 13
-      },
-      "sources": {
-        "wiimmfi": {
-          "status": "ok",
-          "detail": "counted rows from Wiimmfi text stats"
-        },
-        "rwfc": {
-          "status": "ok",
-          "detail": "28 rooms"
-        },
-        "newwfc": {
-          "status": "ok",
-          "detail": "3 groups"
-        }
-      }
-    },
-    {
-      "timestamp": "2026-05-26T20:04:27.085Z",
-      "counts": {
-        "wiimmfi": null,
-        "rwfc": 226,
-        "newwfc": 13
-      },
-      "sources": {
-        "wiimmfi": {
-          "status": "HTTP 403",
-          "detail": "collector could not read this source"
-        },
-        "rwfc": {
-          "status": "ok",
-          "detail": "28 rooms"
-        },
-        "newwfc": {
-          "status": "ok",
-          "detail": "3 groups"
-        }
-      }
-    },
-    {
-      "timestamp": "2026-05-26T20:05:57.701Z",
-      "counts": {
-        "wiimmfi": null,
-        "rwfc": 229,
-        "newwfc": 13
-      },
-      "sources": {
-        "wiimmfi": {
-          "status": "HTTP 403",
-          "detail": "collector could not read this source"
-        },
-        "rwfc": {
-          "status": "ok",
-          "detail": "27 rooms"
-        },
-        "newwfc": {
-          "status": "ok",
-          "detail": "3 groups"
-        }
-      }
-    },
-    {
-      "timestamp": "2026-05-26T20:07:34.255Z",
-      "counts": {
-        "wiimmfi": null,
-        "rwfc": 227,
-        "newwfc": 12
-      },
-      "sources": {
-        "wiimmfi": {
-          "status": "HTTP 403",
-          "detail": "collector could not read this source"
-        },
-        "rwfc": {
-          "status": "ok",
-          "detail": "28 rooms"
-        },
-        "newwfc": {
-          "status": "ok",
-          "detail": "3 groups"
-        }
-      }
-    },
-    {
-      "timestamp": "2026-05-26T20:14:03.926Z",
-      "counts": {
-        "wiimmfi": null,
-        "rwfc": 235,
-        "newwfc": 13
-      },
-      "sources": {
-        "wiimmfi": {
-          "status": "HTTP 403",
-          "detail": "collector could not read this source"
-        },
-        "rwfc": {
-          "status": "ok",
-          "detail": "31 rooms"
-        },
-        "newwfc": {
-          "status": "ok",
-          "detail": "3 groups"
-        }
-      }
-    },
-    {
       "timestamp": "2026-05-26T20:46:08.961Z",
       "counts": {
         "wiimmfi": null,
@@ -12749,6 +12507,28 @@
         "wiimmfi": {
           "status": "ok",
           "detail": "11 rooms from Wiimmfi JSON stats"
+        },
+        "rwfc": {
+          "status": "fetch failed",
+          "detail": "collector could not read this source"
+        },
+        "newwfc": {
+          "status": "ok",
+          "detail": "2 groups"
+        }
+      }
+    },
+    {
+      "timestamp": "2026-06-25T20:45:52.583Z",
+      "counts": {
+        "wiimmfi": 99,
+        "rwfc": null,
+        "newwfc": 8
+      },
+      "sources": {
+        "wiimmfi": {
+          "status": "ok",
+          "detail": "16 rooms from Wiimmfi JSON stats"
         },
         "rwfc": {
           "status": "fetch failed",
