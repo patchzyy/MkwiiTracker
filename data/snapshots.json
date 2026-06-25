@@ -1,72 +1,6 @@
 {
   "snapshots": [
     {
-      "timestamp": "2026-05-26T20:46:08.961Z",
-      "counts": {
-        "wiimmfi": null,
-        "rwfc": 230,
-        "newwfc": 24
-      },
-      "sources": {
-        "wiimmfi": {
-          "status": "HTTP 403",
-          "detail": "collector could not read this source"
-        },
-        "rwfc": {
-          "status": "ok",
-          "detail": "31 rooms"
-        },
-        "newwfc": {
-          "status": "ok",
-          "detail": "6 groups"
-        }
-      }
-    },
-    {
-      "timestamp": "2026-05-26T21:19:46.837Z",
-      "counts": {
-        "wiimmfi": null,
-        "rwfc": 220,
-        "newwfc": 28
-      },
-      "sources": {
-        "wiimmfi": {
-          "status": "https://wiimmfi.de/stats/game/mariokartwii/text: HTTP 403",
-          "detail": "collector could not read this source"
-        },
-        "rwfc": {
-          "status": "ok",
-          "detail": "27 rooms"
-        },
-        "newwfc": {
-          "status": "ok",
-          "detail": "5 groups"
-        }
-      }
-    },
-    {
-      "timestamp": "2026-05-26T21:36:47.777Z",
-      "counts": {
-        "wiimmfi": null,
-        "rwfc": 242,
-        "newwfc": 26
-      },
-      "sources": {
-        "wiimmfi": {
-          "status": "https://wiimmfi.de/stats/game/mariokartwii/text: HTTP 403",
-          "detail": "collector could not read this source"
-        },
-        "rwfc": {
-          "status": "ok",
-          "detail": "31 rooms"
-        },
-        "newwfc": {
-          "status": "ok",
-          "detail": "5 groups"
-        }
-      }
-    },
-    {
       "timestamp": "2026-05-26T22:33:54.408Z",
       "counts": {
         "wiimmfi": null,
@@ -12529,6 +12463,28 @@
         "wiimmfi": {
           "status": "ok",
           "detail": "16 rooms from Wiimmfi JSON stats"
+        },
+        "rwfc": {
+          "status": "fetch failed",
+          "detail": "collector could not read this source"
+        },
+        "newwfc": {
+          "status": "ok",
+          "detail": "2 groups"
+        }
+      }
+    },
+    {
+      "timestamp": "2026-06-25T21:37:28.487Z",
+      "counts": {
+        "wiimmfi": 130,
+        "rwfc": null,
+        "newwfc": 8
+      },
+      "sources": {
+        "wiimmfi": {
+          "status": "ok",
+          "detail": "18 rooms from Wiimmfi JSON stats"
         },
         "rwfc": {
           "status": "fetch failed",
