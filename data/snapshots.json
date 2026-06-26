@@ -1,28 +1,6 @@
 {
   "snapshots": [
     {
-      "timestamp": "2026-05-27T01:04:31.705Z",
-      "counts": {
-        "wiimmfi": null,
-        "rwfc": 220,
-        "newwfc": 11
-      },
-      "sources": {
-        "wiimmfi": {
-          "status": "https://wiimmfi.de/stats/game/mariokartwii/text: HTTP 403",
-          "detail": "collector could not read this source"
-        },
-        "rwfc": {
-          "status": "ok",
-          "detail": "32 rooms"
-        },
-        "newwfc": {
-          "status": "ok",
-          "detail": "1 groups"
-        }
-      }
-    },
-    {
       "timestamp": "2026-05-27T02:25:48.132Z",
       "counts": {
         "wiimmfi": null,
@@ -12493,6 +12471,28 @@
         "newwfc": {
           "status": "ok",
           "detail": "4 groups"
+        }
+      }
+    },
+    {
+      "timestamp": "2026-06-26T01:06:44.326Z",
+      "counts": {
+        "wiimmfi": 75,
+        "rwfc": 139,
+        "newwfc": 13
+      },
+      "sources": {
+        "wiimmfi": {
+          "status": "ok",
+          "detail": "13 rooms from Wiimmfi JSON stats"
+        },
+        "rwfc": {
+          "status": "ok",
+          "detail": "20 rooms"
+        },
+        "newwfc": {
+          "status": "ok",
+          "detail": "2 groups"
         }
       }
     }
