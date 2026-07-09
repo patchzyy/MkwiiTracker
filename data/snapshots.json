@@ -1,72 +1,6 @@
 {
   "snapshots": [
     {
-      "timestamp": "2026-06-09T05:30:01.884Z",
-      "counts": {
-        "wiimmfi": 56,
-        "rwfc": 157,
-        "newwfc": 12
-      },
-      "sources": {
-        "wiimmfi": {
-          "status": "ok",
-          "detail": "9 rooms from Wiimmfi JSON stats"
-        },
-        "rwfc": {
-          "status": "ok",
-          "detail": "21 rooms"
-        },
-        "newwfc": {
-          "status": "ok",
-          "detail": "2 groups"
-        }
-      }
-    },
-    {
-      "timestamp": "2026-06-09T06:54:52.545Z",
-      "counts": {
-        "wiimmfi": 36,
-        "rwfc": 102,
-        "newwfc": 5
-      },
-      "sources": {
-        "wiimmfi": {
-          "status": "ok",
-          "detail": "8 rooms from Wiimmfi JSON stats"
-        },
-        "rwfc": {
-          "status": "ok",
-          "detail": "12 rooms"
-        },
-        "newwfc": {
-          "status": "ok",
-          "detail": "1 groups"
-        }
-      }
-    },
-    {
-      "timestamp": "2026-06-09T08:17:36.847Z",
-      "counts": {
-        "wiimmfi": 35,
-        "rwfc": null,
-        "newwfc": 2
-      },
-      "sources": {
-        "wiimmfi": {
-          "status": "ok",
-          "detail": "6 rooms from Wiimmfi JSON stats"
-        },
-        "rwfc": {
-          "status": "fetch failed",
-          "detail": "collector could not read this source"
-        },
-        "newwfc": {
-          "status": "ok",
-          "detail": "0 groups"
-        }
-      }
-    },
-    {
       "timestamp": "2026-06-09T09:48:44.095Z",
       "counts": {
         "wiimmfi": 25,
@@ -11305,6 +11239,28 @@
         "newwfc": {
           "status": "ok",
           "detail": "0 groups"
+        }
+      }
+    },
+    {
+      "timestamp": "2026-07-09T08:31:00.747Z",
+      "counts": {
+        "wiimmfi": 31,
+        "rwfc": 57,
+        "newwfc": 0
+      },
+      "sources": {
+        "wiimmfi": {
+          "status": "ok",
+          "detail": "4 rooms from Wiimmfi JSON stats"
+        },
+        "rwfc": {
+          "status": "ok",
+          "detail": "7 rooms"
+        },
+        "newwfc": {
+          "status": "ok",
+          "detail": "unknown groups"
         }
       }
     }
