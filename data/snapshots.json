@@ -1,72 +1,6 @@
 {
   "snapshots": [
     {
-      "timestamp": "2026-06-10T01:18:21.763Z",
-      "counts": {
-        "wiimmfi": 64,
-        "rwfc": 138,
-        "newwfc": 16
-      },
-      "sources": {
-        "wiimmfi": {
-          "status": "ok",
-          "detail": "11 rooms from Wiimmfi JSON stats"
-        },
-        "rwfc": {
-          "status": "ok",
-          "detail": "17 rooms"
-        },
-        "newwfc": {
-          "status": "ok",
-          "detail": "2 groups"
-        }
-      }
-    },
-    {
-      "timestamp": "2026-06-10T02:25:15.463Z",
-      "counts": {
-        "wiimmfi": 88,
-        "rwfc": null,
-        "newwfc": 14
-      },
-      "sources": {
-        "wiimmfi": {
-          "status": "ok",
-          "detail": "12 rooms from Wiimmfi JSON stats"
-        },
-        "rwfc": {
-          "status": "fetch failed",
-          "detail": "collector could not read this source"
-        },
-        "newwfc": {
-          "status": "ok",
-          "detail": "1 groups"
-        }
-      }
-    },
-    {
-      "timestamp": "2026-06-10T03:48:43.955Z",
-      "counts": {
-        "wiimmfi": 80,
-        "rwfc": 133,
-        "newwfc": 11
-      },
-      "sources": {
-        "wiimmfi": {
-          "status": "ok",
-          "detail": "10 rooms from Wiimmfi JSON stats"
-        },
-        "rwfc": {
-          "status": "ok",
-          "detail": "20 rooms"
-        },
-        "newwfc": {
-          "status": "ok",
-          "detail": "2 groups"
-        }
-      }
-    },
-    {
       "timestamp": "2026-06-10T05:39:30.828Z",
       "counts": {
         "wiimmfi": 63,
@@ -11107,6 +11041,28 @@
         "newwfc": {
           "status": "ok",
           "detail": "4 groups"
+        }
+      }
+    },
+    {
+      "timestamp": "2026-07-10T05:39:15.067Z",
+      "counts": {
+        "wiimmfi": 81,
+        "rwfc": null,
+        "newwfc": 2
+      },
+      "sources": {
+        "wiimmfi": {
+          "status": "ok",
+          "detail": "12 rooms from Wiimmfi JSON stats"
+        },
+        "rwfc": {
+          "status": "fetch failed",
+          "detail": "collector could not read this source"
+        },
+        "newwfc": {
+          "status": "ok",
+          "detail": "0 groups"
         }
       }
     }
