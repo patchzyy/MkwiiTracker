@@ -1,28 +1,6 @@
 {
   "snapshots": [
     {
-      "timestamp": "2026-06-28T17:30:41.491Z",
-      "counts": {
-        "wiimmfi": 110,
-        "rwfc": null,
-        "newwfc": 5
-      },
-      "sources": {
-        "wiimmfi": {
-          "status": "ok",
-          "detail": "18 rooms from Wiimmfi JSON stats"
-        },
-        "rwfc": {
-          "status": "fetch failed",
-          "detail": "collector could not read this source"
-        },
-        "newwfc": {
-          "status": "ok",
-          "detail": "1 groups"
-        }
-      }
-    },
-    {
       "timestamp": "2026-06-28T18:32:05.813Z",
       "counts": {
         "wiimmfi": 109,
@@ -8349,6 +8327,28 @@
         "wiimmfi": {
           "status": "ok",
           "detail": "8 rooms from Wiimmfi JSON stats"
+        },
+        "rwfc": {
+          "status": "HTTP 404",
+          "detail": "collector could not read this source"
+        },
+        "newwfc": {
+          "status": "ok",
+          "detail": "1 groups"
+        }
+      }
+    },
+    {
+      "timestamp": "2026-07-28T18:22:10.020Z",
+      "counts": {
+        "wiimmfi": 78,
+        "rwfc": null,
+        "newwfc": 6
+      },
+      "sources": {
+        "wiimmfi": {
+          "status": "ok",
+          "detail": "20 rooms from Wiimmfi JSON stats"
         },
         "rwfc": {
           "status": "HTTP 404",
