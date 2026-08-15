@@ -9349,6 +9349,28 @@
           "detail": "2 groups"
         }
       }
+    },
+    {
+      "timestamp": "2026-08-15T20:26:08.215Z",
+      "counts": {
+        "wiimmfi": 99,
+        "rwfc": null,
+        "newwfc": 13
+      },
+      "sources": {
+        "wiimmfi": {
+          "status": "ok",
+          "detail": "17 rooms from Wiimmfi JSON stats"
+        },
+        "rwfc": {
+          "status": "HTTP 404",
+          "detail": "collector could not read this source"
+        },
+        "newwfc": {
+          "status": "ok",
+          "detail": "2 groups"
+        }
+      }
     }
   ]
 }
