@@ -1,50 +1,6 @@
 {
   "snapshots": [
     {
-      "timestamp": "2026-08-02T20:11:41.094Z",
-      "counts": {
-        "wiimmfi": 149,
-        "rwfc": null,
-        "newwfc": 11
-      },
-      "sources": {
-        "wiimmfi": {
-          "status": "ok",
-          "detail": "25 rooms from Wiimmfi JSON stats"
-        },
-        "rwfc": {
-          "status": "HTTP 404",
-          "detail": "collector could not read this source"
-        },
-        "newwfc": {
-          "status": "ok",
-          "detail": "4 groups"
-        }
-      }
-    },
-    {
-      "timestamp": "2026-08-02T21:25:59.161Z",
-      "counts": {
-        "wiimmfi": 135,
-        "rwfc": null,
-        "newwfc": 18
-      },
-      "sources": {
-        "wiimmfi": {
-          "status": "ok",
-          "detail": "21 rooms from Wiimmfi JSON stats"
-        },
-        "rwfc": {
-          "status": "HTTP 404",
-          "detail": "collector could not read this source"
-        },
-        "newwfc": {
-          "status": "ok",
-          "detail": "3 groups"
-        }
-      }
-    },
-    {
       "timestamp": "2026-08-02T22:29:09.888Z",
       "counts": {
         "wiimmfi": 99,
@@ -12273,6 +12229,28 @@
         "newwfc": {
           "status": "HTTP 520",
           "detail": "collector could not read this source"
+        }
+      }
+    },
+    {
+      "timestamp": "2026-09-01T22:28:35.162Z",
+      "counts": {
+        "wiimmfi": null,
+        "rwfc": null,
+        "newwfc": 23
+      },
+      "sources": {
+        "wiimmfi": {
+          "status": "https://wiimmfi.de/stats/mkwx?m=json: could not parse Wiimmfi text rows; https://wiimmfi.de/stats/game/mariokartwii/text: HTTP 403",
+          "detail": "collector could not read this source"
+        },
+        "rwfc": {
+          "status": "HTTP 404",
+          "detail": "collector could not read this source"
+        },
+        "newwfc": {
+          "status": "ok",
+          "detail": "6 groups"
         }
       }
     }
